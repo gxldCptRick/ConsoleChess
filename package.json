@@ -1,0 +1,25 @@
+{
+  "name": "console-chess",
+  "version": "1.0.0",
+  "description": "a simple chess app ",
+  "main": "Scripts/index.js",
+  "scripts": {
+    "test": "tests/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gxldCptRick/ConsoleChess.git"
+  },
+  "keywords": [
+    "chess"
+  ],
+  "author": "Andres Carrera, Fernando Blanco",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/gxldCptRick/ConsoleChess/issues"
+  },
+  "homepage": "https://github.com/gxldCptRick/ConsoleChess#readme",
+  "dependencies": {
+    "fs": "0.0.1-security"
+  }
+}
