@@ -14,3 +14,5 @@ class ChessPiece
         this.position = newPosition;
     } 
 }
+
+export default ChessPiece;
