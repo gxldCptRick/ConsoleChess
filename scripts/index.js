@@ -1,2 +1,2 @@
-const { ChessPiece } = require('./models/ChessPiece');
-var queen = new ChessPiece();
+import * as ChessPiece from "./models/ChessPiece";
+var queen = new ChessPiece("White", "Queen");
