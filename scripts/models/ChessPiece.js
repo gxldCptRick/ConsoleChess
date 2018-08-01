@@ -6,6 +6,14 @@ export class ChessPiece{
         this.getPosition = () => _position;
         this.setPosition = (value) => _position = value;
     } 
+
+    moveTo(nextPosition){
+        var differenceInY = Math.abs(nextPosition.y - this.getPosition().y);
+        var isSameLetter = nextPosition.x == this.getPosition().x;
+        var result = differenceInY < 3 && isSameLetter && differenceInY > 0;
+        return result;
+    }
+
 }
 
 var PieceType = function(name, value)
