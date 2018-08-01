@@ -5,7 +5,8 @@
   "main": "Scripts/index.js",
   "scripts": {
     "babel": "npx babel --presets es2015 Scripts/ --out-dir lib",
-    "start": "node Scripts/index.js",
+    "start": "npm-run-all babel runNode",
+    "runNode": "node lib/index.js",
     "test": "mocha tests/test.js"
   },
   "repository": {
@@ -21,11 +22,15 @@
     "url": "https://github.com/gxldCptRick/ConsoleChess/issues"
   },
   "homepage": "https://github.com/gxldCptRick/ConsoleChess#readme",
-  "dependencies": {},
+  "dependencies": {
+    "chalk": "^2.4.1"
+  },
   "devDependencies": {
+    "assert": "^1.4.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-es2015": "^6.24.1",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "npm-run-all": "^4.1.3"
   }
 }
