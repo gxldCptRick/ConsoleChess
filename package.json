@@ -7,7 +7,8 @@
     "babel": "npx babel --presets es2015 Scripts/ --out-dir lib",
     "start": "npm-run-all babel runNode",
     "runNode": "node lib/index.js",
-    "test": "mocha tests/test.js"
+    "test": "npm-run-all babel mocha-t",
+    "mocha-t": "mocha tests/test.js"
   },
   "repository": {
     "type": "git",
