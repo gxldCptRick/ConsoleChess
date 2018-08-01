@@ -8,7 +8,7 @@
     "start": "npm-run-all babel runNode",
     "runNode": "node lib/index.js",
     "test": "npm-run-all babel mocha-t",
-    "mocha-t": "mocha tests/test.js"
+    "mocha-t": "mocha \"tests/**/*.spec.js\""
   },
   "repository": {
     "type": "git",
