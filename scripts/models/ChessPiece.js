@@ -50,12 +50,12 @@ PieceTypes.Rook.canMoveTo = (currentPosition, nextPosition) => {
 }
 
 PieceTypes.Bishop.canMoveTo = (currentPosition, nextPosition) =>{
-var difInX = (nextPosition.x - currentPosition.x);
+var difInX = Math.abs(nextPosition.x - currentPosition.x);
 var difInY = Math.abs(nextPosition.y - currentPosition.y);
-//C1 >> D2
-var canMoveForward = difInX > 0 && difInY > 0;
-//C1 >> B2
-// var canMoveForwardR = 
+//D4 >> C5
+//D4 >> E5
+var canMoveDiagonal = difInX > 0 && difInY > 0;
+
 return true;
 }
 
