@@ -40,7 +40,9 @@ const PieceTypes = {
 PieceTypes.Pawn.moveTo = (currentPosition, nextPosition) => {
     var differenceInY = Math.abs(nextPosition.y - currentPosition.y);
     var isSameLetter = nextPosition.x == currentPosition.x;
-    var result = differenceInY < 3 && isSameLetter && differenceInY > 0;
+    var isAbleToMove2Spaces = differenceInY < 3;
+    var isMovingForward = differenceInY > 0;
+    var result = isAbleToMove2Spaces && isSameLetter && isMovingForward;
     return result;
 }
 PieceTypes.Rook.moveTo = (currentPosition, nextPosition) => {
