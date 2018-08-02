@@ -49,6 +49,20 @@ PieceTypes.Rook.canMoveTo = (currentPosition, nextPosition) => {
     return true;
 }
 
+PieceTypes.Bishop.canMoveTo = (currentPosition, nextPosition) =>{
+var difInX = (nextPosition.x - currentPosition.x);
+var difInY = Math.abs(nextPosition.y - currentPosition.y);
+//C1 >> D2
+var canMoveForward = difInX > 0 && difInY > 0;
+//C1 >> B2
+// var canMoveForwardR = 
+return true;
+}
+
+PieceTypes.Knight.canMoveTo = (currentPosition, nextPosition) =>{
+    return true;
+}
+
 export const PieceColor = {
     White: "White",
     Black: "Black" 
