@@ -8,7 +8,7 @@ export class ChessPiece{
     } 
 
     moveTo(nextPosition){
-      return this.type.moveTo(this.getPosition(), nextPosition);
+      return this.type.canMoveTo(this.getPosition(), nextPosition);
     }
 
 }
@@ -37,7 +37,7 @@ const PieceTypes = {
     King: PieceType("King", 6)
 };
 
-PieceTypes.Pawn.moveTo = (currentPosition, nextPosition) => {
+PieceTypes.Pawn.canMoveTo = (currentPosition, nextPosition) => {
     var differenceInY = Math.abs(nextPosition.y - currentPosition.y);
     var isSameLetter = nextPosition.x == currentPosition.x;
     var isAbleToMove2Spaces = differenceInY < 3;
@@ -45,7 +45,7 @@ PieceTypes.Pawn.moveTo = (currentPosition, nextPosition) => {
     var result = isAbleToMove2Spaces && isSameLetter && isMovingForward;
     return result;
 }
-PieceTypes.Rook.moveTo = (currentPosition, nextPosition) => {
+PieceTypes.Rook.canMoveTo = (currentPosition, nextPosition) => {
     return true;
 }
 
