@@ -9,5 +9,11 @@ mocha.describe("Rook Movement",function(){
         var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Rook);
         chessPiece.setPosition(new BoardPoint('A', 1));
         assert.equal(chessPiece.moveTo(new BoardPoint('a', 7)), true);
-    }); 
+    });
+
+    mocha.it("Rook Can't Move Diagonally", function(){
+        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Rook);
+        chessPiece.setPosition(new BoardPoint("A",1));
+        assert.equal(chessPiece.moveTo(new BoardPoint("b",2)), false);
+    });
 });
