@@ -56,7 +56,7 @@ var difInY = Math.abs(nextPosition.y - currentPosition.y);
 //D4 >> E5
 var canMoveDiagonal = difInX > 0 && difInY > 0;
 
-return true;
+return canMoveDiagonal;
 }
 
 PieceTypes.Knight.canMoveTo = (currentPosition, nextPosition) =>{
