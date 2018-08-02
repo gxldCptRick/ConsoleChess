@@ -1,9 +1,9 @@
-const mocha = require('mocha'),
-assert = require('assert');
+const mocha = require('mocha');
+const assert = require('assert');
 const { ChessPiece, PieceTypes, PieceColor } = require('../../lib/models/ChessPiece'); 
 const { BoardPoint } = require('../../lib/models/BoardPoint');
 
-mocha.describe('Chess Piece Checkings', function(){
+mocha.describe('Pawn Movement', function(){
     mocha.it('Pawn Can Move two times on first move', function(){
         var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Pawn);
         chessPiece.setPosition(new BoardPoint('E',4));
