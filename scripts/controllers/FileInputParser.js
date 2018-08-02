@@ -7,10 +7,10 @@ const FileReader = {
         this.readFromFile(filePath);
     },    
     readFromFile: (filePath)=> {
-        var interface = readLine.createInterface({
+        var fileReader = readLine.createInterface({
             input: fs.createReadStream(filePath)   
         });
-        interface.on('line', function(lineRead){
+        fileReader.on('line', function(lineRead){
             var array = lineRead.split(' ');
             this.readInputs.push(array); 
         });
