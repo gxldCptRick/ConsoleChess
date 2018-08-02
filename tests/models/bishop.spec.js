@@ -5,16 +5,29 @@ const { BoardPoint } = require('../../lib/models/BoardPoint');
 
 
 mocha.describe("Bishop Movement",function(){
-    mocha.it("Bishop Can Move Diagonally Forward", function(){
+    mocha.it("Bishop Can Move Diagonally Forward Left", function(){
         var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Bishop);
-        chessPiece.setPosition(new BoardPoint('C', 1));
-        assert.equal(chessPiece.moveTo(new BoardPoint('B', 2)), true);
+        chessPiece.setPosition(new BoardPoint('D', 4));
+        assert.equal(chessPiece.moveTo(new BoardPoint('C', 5)), true);
     });
 
-    mocha.it("Bishop Can Move Diagonally Backward", function(){
+    mocha.it("Bishop Can Move Diagonally Forward Right", function(){
         var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Bishop);
-        chessPiece.setPosition(new BoardPoint('C', 3));
-        assert.equal(chessPiece.moveTo(new BoardPoint('B', 2)), true);
+        chessPiece.setPosition(new BoardPoint('D', 4));
+        assert.equal(chessPiece.moveTo(new BoardPoint('E', 5)), true);
+    });
+
+    mocha.it("Bishop Can Move Diagonally Backward Left", function(){
+        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Bishop);
+        chessPiece.setPosition(new BoardPoint('D', 4));
+        assert.equal(chessPiece.moveTo(new BoardPoint('C', 3)), true);
+    });
+
+    
+    mocha.it("Bishop Can Move Diagonally Backward Right", function(){
+        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Bishop);
+        chessPiece.setPosition(new BoardPoint('D', 4));
+        assert.equal(chessPiece.moveTo(new BoardPoint('E', 3)), true);
     });
 
     mocha.it("Bishop Can't Move Horizontally", function(){
