@@ -8,7 +8,6 @@ mocha.describe('Pawn Movement', function(){
         var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Pawn);
         chessPiece.setPosition(new BoardPoint('E',4));
         assert.equal(chessPiece.moveTo(new BoardPoint('E', 6)), true);
-
     });
     
     mocha.it('Pawn Cant Move Three Times on first move', function(){
