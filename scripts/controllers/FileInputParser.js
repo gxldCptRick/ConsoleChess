@@ -1,7 +1,7 @@
 const fs = require('fs');
 const readLine = require('readline');
-var FileReader = {
-    readInputs : [],
+const FileReader = {
+    readInputs: [],
     processFile: (filePath) => {
         if(typeof filePath !== 'string') throw "filePath Must be a string"
         this.readFromFile(filePath);
@@ -16,4 +16,8 @@ var FileReader = {
         });
     }
 };
+
+export {
+    FileReader
+}
 
