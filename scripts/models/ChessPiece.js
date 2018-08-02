@@ -68,7 +68,7 @@ PieceTypes.Knight.canMoveTo = (currentPosition, nextPosition) =>{
     //Up
     //D4 >> E6
     //D4 >> C6
-    var canMoveInLShape = (difInX == 2 && difInY == 1) ? true : (difiny == 2 && difinx == 1) ? true : false;
+    var canMoveInLShape = (difInX == 2 && difInY == 1) ? true : (difInY == 2 && difInX == 1) ? true : false;
     //Down
     //D4 >> C2
     //D4 >> E2
