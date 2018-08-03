@@ -4,7 +4,7 @@ const { ChessPiece, PieceTypes, PieceColor } = require('../../lib/models/ChessPi
 const { BoardPoint } = require('../../lib/models/BoardPoint');
 
 
-mocha.describe("Bishop Movement",function(){
+mocha.describe("Bishop Moves Correctly",function(){
     mocha.it("Bishop Can Move Diagonally Forward Left", function(){
         var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Bishop);
         chessPiece.setPosition(new BoardPoint('D', 4));
