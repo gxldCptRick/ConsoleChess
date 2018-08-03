@@ -6,7 +6,7 @@
   "scripts": {
     "babel": "npx babel --presets es2015 Scripts/ --out-dir lib",
     "start": "npm-run-all babel launch-app",
-    "launch-app": "node lib/index.js \"C:\\Users\\Andres Carrera\\OneDrive - Neumont College of Computer Science\\Summer Q4 2018\\Intro Software Projects\\ConsoleChess\\testFile.txt\"",
+    "launch-app": "node lib/index.js testFile.txt",
     "test": "npm-run-all babel mocha-t",
     "mocha-t": "mocha \"tests/**/*.spec.js\""
   },
