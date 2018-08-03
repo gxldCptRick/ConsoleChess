@@ -2,7 +2,7 @@
   "name": "console-chess",
   "version": "1.0.0",
   "description": "a simple chess app ",
-  "main": "Scripts/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "babel": "npx babel --presets es2015 Scripts/ --out-dir lib",
     "start": "npm-run-all babel runNode",
