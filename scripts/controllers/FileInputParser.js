@@ -2,17 +2,20 @@ const fs = require('fs');
 const readLine = require('readline');
 const FileReader = {
     readInputs: [],
-    processFile: (filePath) => {
+    processFile: (filePath, callBack) => {
         if(typeof filePath !== 'string') throw "filePath Must be a string"
-        this.readFromFile(filePath);
+        FileReader.readFromFile(filePath, callBack);
     },    
-    readFromFile: (filePath)=> {
-        var fileReader = readLine.createInterface({
-            input: fs.createReadStream(filePath)   
-        });
-        fileReader.on('line', function(lineRead){
-            var array = lineRead.split(' ');
-            this.readInputs.push(array); 
+    readFromFile: (filePath, callBack)=> {
+        fs.readFile(filePath, 'utf8', function(err, data){
+            if(err) throw err;
+            let lines = data.split('\r\n');
+            lines.forEach(line => {
+                let inputs = line.split(' ');
+                FileReader.readInputs.push(inputs);
+            });
+
+            callBack();
         });
     }
 };
