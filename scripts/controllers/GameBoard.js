@@ -80,15 +80,10 @@ export class GameBoard {
         let secondPosition = commandArgs[1];
         let originPoint = this.validateInRange(firstPosition);
         let destinationPoint = this.validateInRange(secondPosition);
-        let pieceAtPoint;
-        let pieceAtDestination;
-        try{
-            pieceAtPoint = this.findPieceBasedOnPoint(originPoint); 
-            pieceAtDestination = this.findPieceBasedOnPoint(destinationPoint); 
-        }
-        catch(e){}
-        let isPointAlreadyTaken = pieceAtDestination;
-        if(!isPointAlreadyTaken) throw `${pieceAtPoint.type.name} at ${originPoint.Point} cannot move on to same position as ${pieceAtDestination.type.name} at ${destinationPoint.Point}`
+        let pieceAtPoint = this.findPieceBasedOnPoint(originPoint); 
+        let pieceAtDestination = this.findPieceBasedOnPoint(destinationPoint); 
+        let isPieceAtPoint = pieceAtDestination != null;
+        if(isPieceAtPoint) throw `${pieceAtPoint.type.name} at ${originPoint.Point} cannot move on to same position as ${pieceAtDestination.type.name} at ${destinationPoint.Point}`
         let wasAbleToMove = pieceAtPoint.moveTo(destinationPoint);
         if(!wasAbleToMove) throw `${pieceAtPoint.type.name} at ${originPoint.Point} is not able to move to ${destinationPoint.Point}`
         wasAbleToMove = this.AdjustPositionInHash(pieceAtPoint, destinationPoint);
@@ -103,7 +98,6 @@ export class GameBoard {
     findPieceBasedOnPoint(originPoint){
         console.log(originPoint.Point);
         let piece = this.pieces[originPoint.Point];
-        if(!piece) throw `No Piece Found`;
         return piece;
     }
 
