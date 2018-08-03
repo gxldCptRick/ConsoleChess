@@ -3,7 +3,7 @@ const assert = require('assert');
 const { ChessPiece, PieceTypes, PieceColor } = require('../../lib/models/ChessPiece'); 
 const { BoardPoint } = require('../../lib/models/BoardPoint');
 
-mocha.describe("Knight Movement",function(){
+mocha.describe("Knight Moves Correctly",function(){
     mocha.it("Knight Can Move L-Shape Forward-Right", function(){
         var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
         chessPiece.setPosition(new BoardPoint('D', 4));
