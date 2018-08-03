@@ -36,7 +36,7 @@ const PieceTypes = {
     Queen: PieceType("Queen", 5),
     King: PieceType("King", 6)
 };
-
+//Pawn Movement
 PieceTypes.Pawn.canMoveTo = (currentPosition, nextPosition) => {
     var differenceInY = Math.abs(nextPosition.y - currentPosition.y);
     var isSameLetter = nextPosition.x == currentPosition.x;
@@ -45,6 +45,7 @@ PieceTypes.Pawn.canMoveTo = (currentPosition, nextPosition) => {
     var result = isAbleToMove2Spaces && isSameLetter && isMovingForward;
     return result;
 }
+//Rook Movement
 PieceTypes.Rook.canMoveTo = (currentPosition, nextPosition) => {
     var difInX = Math.abs(nextPosition.x - currentPosition.x);
     var difInY = Math.abs(nextPosition.y - currentPosition.y);
@@ -61,12 +62,33 @@ var difInY = Math.abs(nextPosition.y - currentPosition.y);
 var canMoveDiagonal = difInX > 0 && difInY > 0;
 return canMoveDiagonal;
 }
-
+//Knight Movement
 PieceTypes.Knight.canMoveTo = (currentPosition, nextPosition) =>{
     var difInX = Math.abs(nextPosition.x - currentPosition.x);
     var difInY = Math.abs(nextPosition.y - currentPosition.y);
     var canMoveInLShape = (difInX == 2 && difInY == 1) ? true : (difInY == 2 && difInX == 1) ? true : false;
     return canMoveInLShape;
+}
+//Queen Movement
+PieceTypes.Queen.canMoveTo = (currentPosition, nextPosition) =>{
+    var difInX = Math.abs(nextPosition.x - currentPosition.x);
+    var difInY = Math.abs(nextPosition.y - currentPosition.y);
+    var canMoveDiagonal = difInX > 0 && difInY > 0;
+    var canMoveHorizontal = difInX > 0 && difInY == 0;
+    var canMoveVertical = difInX == 0 && difInY > 0;
+    var canMove = canMoveDiagonal || canMoveVertical || canMoveHorizontal;
+    return canMove;
+}
+//King Movement
+PieceTypes.King.canMoveTo = (currentPosition, nextPosition) => {
+
+    var difInX = Math.abs(nextPosition.x - currentPosition.x);
+    var difInY = Math.abs(nextPosition.y - currentPosition.y);
+    var canMoveDiagonally = difInX == 1 && difInY == 1;
+    var canMoveVertically = difInX == 0 && difInY > 0;
+    var canMoveHorizontally = difInX > 0 && difInY == 0;
+    var canMove = canMoveDiagonally || canMoveVertically || canMoveHorizontally;
+    return canMove;
 }
 
 export const PieceColor = {
