@@ -14,8 +14,7 @@ const FileReader = {
                 let inputs = line.split(' ');
                 FileReader.readInputs.push(inputs);
             });
-
-            callBack();
+            if(callBack) callBack();
         });
     }
 };
