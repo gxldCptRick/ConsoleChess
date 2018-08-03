@@ -80,7 +80,7 @@ export class GameBoard {
         let destinationPoint = this.validateInRange(secondPosition);
         let pieceAtPoint = this.findPieceBasedOnPoint(originPoint);
         let success = pieceAtPoint.moveTo(destinationPoint);
-        if(!success) throw `${pieceAtPoint.type.name} is not able to move there`
+        if(!success) throw `${pieceAtPoint.type.name} at ${originPoint.Point} is not able to move to ${destinationPoint.Point}`
         return `${pieceAtPoint.type.name} moved to ${destinationPoint.Point}`
     }
 
@@ -92,10 +92,10 @@ export class GameBoard {
     }
 
     validateInRange(positionToCheck){
-        if(positionToCheck.length > 2) throw "Command To Long"
+        if(positionToCheck.length > 2) throw "pass in a position"
         let point = new BoardPoint(positionToCheck[0], positionToCheck[1]);
-        if(point.x < LowerBounds.x || point.x > this.xLimit) throw "X point out of bounds"
-        if(point.y < LowerBounds.y || point.y > this.yLimit) throw "Y point out of bounds"
+        if(point.x < LowerBounds.x || point.x > this.xLimit) throw `${point.Point} is not on the board`
+        if(point.y < LowerBounds.y || point.y > this.yLimit) throw `${point.Point} is not on the Board`
         return point
     }
 }
