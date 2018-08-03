@@ -7,9 +7,7 @@ const LowerBounds = {
 
 export class GameBoard {
     constructor(bounds){
-        this.pieces = {
-
-        };
+        this.pieces = {};
         this.xLimit = bounds.x;
         this.yLimit = bounds.y;
         this.setupBoard();
@@ -83,9 +81,18 @@ export class GameBoard {
         let originPoint = this.validateInRange(firstPosition);
         let destinationPoint = this.validateInRange(secondPosition);
         let pieceAtPoint = this.findPieceBasedOnPoint(originPoint);
-        let success = pieceAtPoint.moveTo(destinationPoint);
-        if(!success) throw `${pieceAtPoint.type.name} at ${originPoint.Point} is not able to move to ${destinationPoint.Point}`
+        let pieceAtDestination = this.findPieceBasedOnPoint(destinationPoint);
+        let isPointAlreadyTaken = pieceAtDestination;
+        if(!isPointAlreadyTaken) throw `${pieceAtPoint.type.name} at ${originPoint.Point} cannot move on to same position as ${pieceAtDestination.type.name} at ${destinationPoint.Point}`
+        let wasAbleToMove = pieceAtPoint.moveTo(destinationPoint);
+        if(!wasAbleToMove) throw `${pieceAtPoint.type.name} at ${originPoint.Point} is not able to move to ${destinationPoint.Point}`
+        wasAbleToMove = this.AdjustPositionInHash(pieceAtPoint, destinationPoint);
         return `${pieceAtPoint.type.name} moved to ${destinationPoint.Point}`
+    }
+
+    AdjustPositionInHash(piece, point){
+        this.pieces[piece.getPosition().Point] = null;
+        this.pieces[point.Point] = piece; 
     }
 
     findPieceBasedOnPoint(originPoint){
