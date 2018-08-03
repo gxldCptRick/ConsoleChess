@@ -48,12 +48,6 @@ mocha.describe("Bishop Movement",function(){
         assert.equal(chessPiece.moveTo(new BoardPoint('C', 1)), false);
     });
 
-    // mocha.it("Bishop Can Move Diagonally Forward", function(){
-    //     var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Bishop);
-    //     chessPiece.setPosition(new BoardPoint('C', 1));
-    //     assert.equal(chessPiece.moveTo(new BoardPoint('B', 2)), true);
-    // });
-
 })
 
     
