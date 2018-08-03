@@ -14,7 +14,27 @@ export class GameBoard {
     }
 
     setupBoard(){
+        this.addPawns(PieceColor.White);
+        this.addPawns(PieceColor.Black);
+    }
 
+    addRooks(color){
+        let location = color == PieceColor.White? 1: 8;
+        let rightRook = new ChessPiece(color, PieceTypes.Rook);
+        this.pieces.push(rightRook);
+        rightRook.setPosition(new BoardPoint(1,location));
+        let leftRook = new ChessPiece(color, PieceTypes.Rook);
+        this.pieces.push(leftRook);
+        leftRook.setPosition(new BoardPoint(8, location));
+    }
+
+    addPawns(color){
+        for(let i = 0; i < this.xLimit; i++){
+            let pawn = new ChessPiece(color, PieceTypes.Pawn);
+            this.pieces.push(pawn);
+            let position = color === PieceColor.White ? 2 : 7; 
+            pawn.setPosition(new BoardPoint(i, position));
+        }
     }
 
     runSinglePointCommand(commandArgs){
