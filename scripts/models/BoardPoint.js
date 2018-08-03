@@ -4,7 +4,8 @@ export class BoardPoint {
         if(typeof alphaCharacter === 'string'){
             var alphalpha = alphaCharacter.toUpperCase();
             this.x = alphalpha.charCodeAt(0) - ValueForAMinusOne;
-        }else this.x = alphaCharacter + 1;
+        }
+        else this.x = alphaCharacter + 1;
         
         this.y = numberedPosition;
     }
