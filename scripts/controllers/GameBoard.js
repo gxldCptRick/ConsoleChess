@@ -23,14 +23,23 @@ export class GameBoard {
         this.addRooks(color);
         this.addKnight(color);
         this.addBishop(color);
+        this.addKingAndQueen(color);
+    }
+
+    addKingAndQueen(color){
+        let position = color === PieceColor.White? LowerBounds.y: this.yLimit;
+        let king = new ChessPiece(color, PieceTypes.King);
+        let queen = new ChessPiece(color, PieceTypes.Queen);
+        king.setPosition(new BoardPoint(this.xLimit - 3, position));
+        queen.setPosition(new BoardPoint(LowerBounds.x + 3, position));
     }
 
     addBishop(color){
         let location = color === PieceColor.White ? LowerBounds.y:  this.yLimit;
         let rightBishop = new ChessPiece(color, PieceTypes.Bishop);
         let leftBishop = new ChessPiece(color, PieceTypes.Bishop);
-        rightBishop.setPosition(LowerBounds.x + 2, location);
-        leftBishop.setPosition(this.xLimit  - 2, location);
+        leftBishop.setPosition(new BoardPoint(LowerBounds.x + 2, location));
+        rightBishop.setPosition(new BoardPoint(this.xLimit  - 2, location));
         this.pieces.push(rightBishop);
         this.pieces.push(leftBishop);
     }
@@ -39,8 +48,8 @@ export class GameBoard {
         let location = color === PieceColor.White ? LowerBounds.y: this.yLimit;
         let rightKnight = new ChessPiece(color, PieceTypes.Knight);
         let leftKnight = new ChessPiece(color, PieceTypes.Knight);
-        rightKnight.setPosition(LowerBounds.x + 1, location);
-        leftKnight.setPosition(this.yLimit - 1, location);
+        leftKnight.setPosition(new BoardPoint(LowerBounds.x + 1, location));
+        rightKnight.setPosition(new BoardPoint(this.yLimit - 1, location));
         this.pieces.push(rightKnight);
         this.pieces.push(leftKnight);
     }
@@ -49,8 +58,8 @@ export class GameBoard {
         let location = color == PieceColor.White? LowerBounds.y: this.yLimit;
         let rightRook = new ChessPiece(color, PieceTypes.Rook);
         let leftRook = new ChessPiece(color, PieceTypes.Rook);
-        rightRook.setPosition(new BoardPoint(LowerBounds.x,location));
-        leftRook.setPosition(new BoardPoint(this.xLimit, location));
+        leftRook.setPosition(new BoardPoint(LowerBounds.x,location));
+        rightRook.setPosition(new BoardPoint(this.xLimit, location));
         this.pieces.push(rightRook);
         this.pieces.push(leftRook);
     }
