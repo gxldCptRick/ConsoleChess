@@ -4,17 +4,6 @@ const { ChessPiece, PieceTypes, PieceColor } = require('../../lib/models/ChessPi
 const { BoardPoint } = require('../../lib/models/BoardPoint');
 
 mocha.describe("Knight Movement",function(){
-
-     //Up
-    //D4 >> E6
-    //D4 >> C6
-    //Down
-    //D4 >> C2
-    //D4 >> E2
-    //Left
-    //D4 >> Up B5 or Down B3
-    //Right
-    //D4 >> Up F5 or Down F3
     mocha.it("Knight Can Move L-Shape Forward-Right", function(){
         var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
         chessPiece.setPosition(new BoardPoint('D', 4));
