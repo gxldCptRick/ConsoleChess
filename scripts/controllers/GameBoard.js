@@ -14,25 +14,52 @@ export class GameBoard {
     }
 
     setupBoard(){
-        this.addPawns(PieceColor.White);
-        this.addPawns(PieceColor.Black);
+        this.setUpColoredPieces(PieceColor.White);
+        this.setUpColoredPieces(PieceColor.Black);
+    }
+
+    setUpColoredPieces(color){
+        this.addPawns(color);
+        this.addRooks(color);
+        this.addKnight(color);
+        this.addBishop(color);
+    }
+
+    addBishop(color){
+        let location = color === PieceColor.White ? LowerBounds.y:  this.yLimit;
+        let rightBishop = new ChessPiece(color, PieceTypes.Bishop);
+        let leftBishop = new ChessPiece(color, PieceTypes.Bishop);
+        rightBishop.setPosition(LowerBounds.x + 2, location);
+        leftBishop.setPosition(this.xLimit  - 2, location);
+        this.pieces.push(rightBishop);
+        this.pieces.push(leftBishop);
+    }
+
+    addKnight(color){
+        let location = color === PieceColor.White ? LowerBounds.y: this.yLimit;
+        let rightKnight = new ChessPiece(color, PieceTypes.Knight);
+        let leftKnight = new ChessPiece(color, PieceTypes.Knight);
+        rightKnight.setPosition(LowerBounds.x + 1, location);
+        leftKnight.setPosition(this.yLimit - 1, location);
+        this.pieces.push(rightKnight);
+        this.pieces.push(leftKnight);
     }
 
     addRooks(color){
-        let location = color == PieceColor.White? 1: 8;
+        let location = color == PieceColor.White? LowerBounds.y: this.yLimit;
         let rightRook = new ChessPiece(color, PieceTypes.Rook);
-        this.pieces.push(rightRook);
-        rightRook.setPosition(new BoardPoint(1,location));
         let leftRook = new ChessPiece(color, PieceTypes.Rook);
+        rightRook.setPosition(new BoardPoint(LowerBounds.x,location));
+        leftRook.setPosition(new BoardPoint(this.xLimit, location));
+        this.pieces.push(rightRook);
         this.pieces.push(leftRook);
-        leftRook.setPosition(new BoardPoint(8, location));
     }
 
     addPawns(color){
         for(let i = 0; i < this.xLimit; i++){
             let pawn = new ChessPiece(color, PieceTypes.Pawn);
             this.pieces.push(pawn);
-            let position = color === PieceColor.White ? 2 : 7; 
+            let position = color === PieceColor.White ? LowerBounds.y + 1 : this.yLimit - 1; 
             pawn.setPosition(new BoardPoint(i, position));
         }
     }
