@@ -8,7 +8,9 @@ export class ChessPiece{
     } 
 
     moveTo(nextPosition){
-      return this.type.canMoveTo(this.getPosition(), nextPosition);
+        let success = this.type.canMoveTo(this.getPosition(), nextPosition);
+        if(success) this.setPosition(nextPosition);
+        return success;
     }
 
 }
