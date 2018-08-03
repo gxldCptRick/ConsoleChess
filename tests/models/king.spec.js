@@ -18,16 +18,31 @@ mocha.describe('King Movement', function(){
         assert.equal(chessPiece.moveTo(new BoardPoint('F', 4)), true);
     });
 
-    mocha.it('King Can Move Diagonally', function(){
+    mocha.it('King Can Move Diagonally Forward Right', function(){
+        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.King);
+        chessPiece.setPosition(new BoardPoint('E',4));
+        assert.equal(chessPiece.moveTo(new BoardPoint('F', 5)), true);
+    });
+
+    
+    mocha.it('King Can Move Diagonally Forward Left', function(){
         var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.King);
         chessPiece.setPosition(new BoardPoint('E',4));
         assert.equal(chessPiece.moveTo(new BoardPoint('D', 3)), true);
-        assert.equal(chessPiece.moveTo(new BoardPoint('F', 5)), true);
-        assert.equal(chessPiece.moveTo(new BoardPoint('D', 5)), true);
+    });
+
+    
+    mocha.it('King Can Move Diagonally Backward Right', function(){
+        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.King);
+        chessPiece.setPosition(new BoardPoint('E',4));
         assert.equal(chessPiece.moveTo(new BoardPoint('F', 3)), true);
     });
 
-
-
+    
+    mocha.it('King Can Move Diagonally Backward Left', function(){
+        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.King);
+        chessPiece.setPosition(new BoardPoint('E',4));
+        assert.equal(chessPiece.moveTo(new BoardPoint('D', 5)), true);
+    });
 
 })
