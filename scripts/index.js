@@ -5,12 +5,11 @@ import { callbackify } from 'util';
 let path = require('path');
 let callBack = () => {
     let processedInputs = FileReader.readInputs;
-    console.log(processedInputs);
     let CurrentGame = new GameBoard({ 
         x: 8,
         y: 8
     });
-    processedInputs.forEach(input => {
+    processedInputs.forEach((input, index) => {
         if(input.length === 2) {
             try {
                let output =  CurrentGame.runSinglePointCommand(input);
@@ -19,8 +18,9 @@ let callBack = () => {
                 console.error(e);
             }
         }else {
-            throw "What"
-        }});
+            console.log(index);
+        }
+    });
 };
 
 let args = process.argv.slice(2);
