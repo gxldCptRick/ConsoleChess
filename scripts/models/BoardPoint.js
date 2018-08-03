@@ -1,8 +1,11 @@
 const ValueForA = 65;
 export class BoardPoint {
     constructor(alphaCharacter, numberedPosition){
-        var alphalpha = alphaCharacter.toUpperCase();
-        this.x = alphalpha.charCodeAt(0) - ValueForA;
+        if(typeof alphaCharacter === 'string'){
+            var alphalpha = alphaCharacter.toUpperCase();
+            this.x = alphalpha.charCodeAt(0) - ValueForA;
+        }else this.x = alphaCharacter - ValueForA;
+        
         this.y = numberedPosition;
     }
     
