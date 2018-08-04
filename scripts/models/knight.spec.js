@@ -1,99 +1,138 @@
 import mocha from 'mocha';
-import assert from 'assert';
-import { PieceTypes } from './PieceTypes'
-import { ChessPiece, PieceColor } from './ChessPiece'; 
+import chai from 'chai';
+import { PieceTypes } from './PieceTypes' 
 import BoardPoint  from './BoardPoint';
+
+const should = chai.should();
 
 mocha.describe("Knight Moves Correctly",function(){
     mocha.it("Knight Can Move L-Shape Forward-Right", function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
-        chessPiece.setPosition(new BoardPoint('D', 4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('E', 6)), true);
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('E', 6);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     mocha.it("Knight Can Move L-Shape Forward-Left", function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
-        chessPiece.setPosition(new BoardPoint('D', 4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('C', 6)), true);
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('C', 6);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     mocha.it("Knight Can Move L-Shape Left-Up", function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
-        chessPiece.setPosition(new BoardPoint('D', 4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('B', 5)), true);
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('B', 5);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     mocha.it("Knight Can Move L-Shape Left-Down", function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
-        chessPiece.setPosition(new BoardPoint('D', 4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('B', 3)), true);
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('B', 3);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     mocha.it("Knight Can Move L-Shape Right-Up", function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
-        chessPiece.setPosition(new BoardPoint('D', 4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('F', 5)), true);
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('F', 5);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     mocha.it("Knight Can Move L-Shape Right-Down", function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
-        chessPiece.setPosition(new BoardPoint('D', 4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('F', 3)), true);
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('F', 3);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     mocha.it("Knight Can Move L-Shape Backward-Left", function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
-        chessPiece.setPosition(new BoardPoint('D', 4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('C', 2)), true);
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('C', 2);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     mocha.it("Knight Can Move L-Shape Backward-Right", function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
-        chessPiece.setPosition(new BoardPoint('D', 4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('E', 2)), true);
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('E', 2);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     mocha.it("Knight Can't Move Vertically Up", function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
-        chessPiece.setPosition(new BoardPoint('B', 1));
-        assert.equal(chessPiece.moveTo(new BoardPoint('B', 2)), false);
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('D', 5);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.not.equal(true);
     });
 
     mocha.it("Knight Can't Move Vertically Down", function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
-        chessPiece.setPosition(new BoardPoint('B', 2));
-        assert.equal(chessPiece.moveTo(new BoardPoint('B', 1)), false);
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('D', 5);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.not.equal(true);
     });
 
     mocha.it("Knight Can't Move Horizontally Right", function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
-        chessPiece.setPosition(new BoardPoint('B', 1));
-        assert.equal(chessPiece.moveTo(new BoardPoint('C', 1)), false);
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('E', 4);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.not.equal(true);
     });
 
     mocha.it("Knight Can't Move Horizontally Left", function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
-        chessPiece.setPosition(new BoardPoint('B', 1));
-        assert.equal(chessPiece.moveTo(new BoardPoint('A', 1)), false);
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('C', 4);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.not.equal(true);
     });
 
     mocha.it("Knight Can't Move Diagonally-Forward-Left", function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
-        chessPiece.setPosition(new BoardPoint('B', 1));
-        assert.equal(chessPiece.moveTo(new BoardPoint('A', 2)), false);
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('C', 5);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.not.equal(true);
     });
 
     mocha.it("Knight Can't Move Diagonally-Forward-Right", function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
-        chessPiece.setPosition(new BoardPoint('B', 1));
-        assert.equal(chessPiece.moveTo(new BoardPoint('C', 2)), false);
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('E', 5);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.not.equal(true);
     });
 
     
     mocha.it("Knight Can't Move Diagonally-Backward-Left", function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.Knight);
-        chessPiece.setPosition(new BoardPoint('B', 1));
-        assert.equal(chessPiece.moveTo(new BoardPoint('A', 2)), false);
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('C', 3);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.not.equal(true);
+    });
+
+    mocha.it("Knight Can't Move Diagonally-Backward-Right", function(){
+        let originalPoint = new BoardPoint('D', 4);
+        let nextPoint = new BoardPoint('E', 3);
+        let result = PieceTypes.Knight.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.not.equal(true);
     });
 
 })
