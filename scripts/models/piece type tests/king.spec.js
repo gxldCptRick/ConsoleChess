@@ -1,7 +1,7 @@
 import mocha from 'mocha';
 import chai from 'chai';
-import { PieceTypes } from './PieceTypes';
-import BoardPoint from './BoardPoint';
+import { PieceTypes } from '../PieceTypes';
+import BoardPoint from '../BoardPoint';
 const should = chai.should();
 mocha.describe('King Moves Correctly', function(){
     mocha.it('King Can Move Forward', function(){
