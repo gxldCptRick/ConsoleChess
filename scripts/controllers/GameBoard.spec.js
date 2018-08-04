@@ -79,5 +79,48 @@ mocha.describe('GameBoard Spawns Pieces Correctly', function(){
 });
 
 mocha.describe('GameBoard Commands Works Correctly', function(){
-    
+    mocha.it('GameBoard Single Point Command Returns Correct String', function(){
+        let board = new GameBoard({x:8, y:8});
+        let command = [["a",2], ["a",3]];
+        let expectedOutput = "Pawn moved to A3"
+        let actualOutput = board.runSinglePointCommand(command);
+        actualOutput.should.equal(expectedOutput);
+    });
+
+    mocha.it('GameBoard Single Point Command Actually Moves the piece', function(){
+        let board = new GameBoard({x:8, y:8});
+        let command = [["a",2], ["a",3]];
+        let pieces = board.pieces;
+        board.runSinglePointCommand(command);
+        should.exist(pieces);
+        should.equal(pieces.A2, null);
+        pieces.should.have.property("A3");
+        pieces.A3.type.name.should.equal("Pawn");
+    });
+
+    mocha.it('GameBoard Single Point Command throws exception when moving piece on a spot where there is another.', function(){
+        let board = new GameBoard({x:8, y:8});
+        let command = [["a",1], ["a",2]];
+        let pieces = board.pieces;
+        pieces.should.have.property("A1");
+        pieces.should.have.property("A2");
+        try
+        {
+            board.runSinglePointCommand(command)
+        }catch (e){
+            e.should.equal(`Rook at A1 cannot move on to same position as Pawn at A2`);
+        }
+    });
+
+    mocha.it('GameBoard Single Point Command throws exception when moving piece on a spot where there is another.', function(){
+        let board = new GameBoard({x:8, y:8},true);
+        let command = "Bld5";
+        let pieces = board.pieces;
+        board.runPlacementCommand(command);
+        should.exist(pieces);
+        pieces.should.have.property("D5");
+        pieces.D5.type.name.should.equal("Bishop");
+        pieces.D5.color.should.equal("White");
+    });
+
 });

@@ -1,25 +1,27 @@
 import { PieceTypes } from '../models/PieceTypes';
 import { ChessPiece, PieceColor } from '../models/ChessPiece'
-import BoardPoint  from '../models/BoardPoint'
+import BoardPoint from '../models/BoardPoint'
 const LowerBounds = {
     x: 0,
     y: 1
 };
 
 export class GameBoard {
-    constructor(bounds){
+    constructor(bounds, customPlacement=false) {
         this.pieces = {};
         this.xLimit = bounds.x - 1;
         this.yLimit = bounds.y;
-        this.setupBoard();
+        if (!customPlacement) {
+            this.setupBoard();
+        }
     }
 
-    setupBoard(){
+    setupBoard() {
         this.setUpColoredPieces(PieceColor.White);
         this.setUpColoredPieces(PieceColor.Black);
     }
 
-    setUpColoredPieces(color){
+    setUpColoredPieces(color) {
         this.addPawns(color);
         this.addRooks(color);
         this.addKnight(color);
@@ -27,8 +29,8 @@ export class GameBoard {
         this.addKingAndQueen(color);
     }
 
-    addKingAndQueen(color){
-        let position = color === PieceColor.White? LowerBounds.y: this.yLimit;
+    addKingAndQueen(color) {
+        let position = color === PieceColor.White ? LowerBounds.y : this.yLimit;
         let king = new ChessPiece(color, PieceTypes.King);
         let queen = new ChessPiece(color, PieceTypes.Queen);
         king.setPosition(new BoardPoint(this.xLimit - 3, position));
@@ -37,18 +39,18 @@ export class GameBoard {
         this.pieces[queen.getPosition().Point] = queen;
     }
 
-    addBishop(color){
-        let location = color === PieceColor.White ? LowerBounds.y:  this.yLimit;
+    addBishop(color) {
+        let location = color === PieceColor.White ? LowerBounds.y : this.yLimit;
         let rightBishop = new ChessPiece(color, PieceTypes.Bishop);
         let leftBishop = new ChessPiece(color, PieceTypes.Bishop);
         leftBishop.setPosition(new BoardPoint(LowerBounds.x + 2, location));
-        rightBishop.setPosition(new BoardPoint(this.xLimit  - 2, location));
+        rightBishop.setPosition(new BoardPoint(this.xLimit - 2, location));
         this.pieces[rightBishop.getPosition().Point] = rightBishop;
         this.pieces[leftBishop.getPosition().Point] = leftBishop;
     }
 
-    addKnight(color){
-        let location = color === PieceColor.White ? LowerBounds.y: this.yLimit;
+    addKnight(color) {
+        let location = color === PieceColor.White ? LowerBounds.y : this.yLimit;
         let rightKnight = new ChessPiece(color, PieceTypes.Knight);
         let leftKnight = new ChessPiece(color, PieceTypes.Knight);
         leftKnight.setPosition(new BoardPoint(LowerBounds.x + 1, location));
@@ -57,8 +59,8 @@ export class GameBoard {
         this.pieces[leftKnight.getPosition().Point] = leftKnight;
     }
 
-    addRooks(color){
-        let location = color == PieceColor.White? LowerBounds.y: this.yLimit;
+    addRooks(color) {
+        let location = color == PieceColor.White ? LowerBounds.y : this.yLimit;
         let rightRook = new ChessPiece(color, PieceTypes.Rook);
         let leftRook = new ChessPiece(color, PieceTypes.Rook);
         leftRook.setPosition(new BoardPoint(LowerBounds.x, location));
@@ -67,45 +69,93 @@ export class GameBoard {
         this.pieces[leftRook.getPosition().Point] = leftRook;
     }
 
-    addPawns(color){
-        for(let i = 0; i <= this.xLimit; i++){
+    addPawns(color) {
+        for (let i = 0; i <= this.xLimit; i++) {
             let pawn = new ChessPiece(color, PieceTypes.Pawn);
-            let position = color === PieceColor.White ? LowerBounds.y + 1 : this.yLimit - 1; 
+            let position = color === PieceColor.White ? LowerBounds.y + 1 : this.yLimit - 1;
             pawn.setPosition(new BoardPoint(i, position));
             this.pieces[pawn.getPosition().Point] = pawn;
         }
     }
 
-    runSinglePointCommand(commandArgs){
+    runSinglePointCommand(commandArgs) {
         let firstPosition = commandArgs[0];
         let secondPosition = commandArgs[1];
         let originPoint = this.validateInRange(firstPosition);
         let destinationPoint = this.validateInRange(secondPosition);
-        let pieceAtPoint = this.findPieceBasedOnPoint(originPoint); 
-        let pieceAtDestination = this.findPieceBasedOnPoint(destinationPoint); 
+        let pieceAtPoint = this.findPieceBasedOnPoint(originPoint);
+        let pieceAtDestination = this.findPieceBasedOnPoint(destinationPoint);
         let isPieceAtPoint = pieceAtDestination != null;
-        if(isPieceAtPoint) throw `${pieceAtPoint.type.name} at ${originPoint.Point} cannot move on to same position as ${pieceAtDestination.type.name} at ${destinationPoint.Point}`
+        if (isPieceAtPoint) throw `${pieceAtPoint.type.name} at ${originPoint.Point} cannot move on to same position as ${pieceAtDestination.type.name} at ${destinationPoint.Point}`
         let wasAbleToMove = pieceAtPoint.moveTo(destinationPoint);
-        if(!wasAbleToMove) throw `${pieceAtPoint.type.name} at ${originPoint.Point} is not able to move to ${destinationPoint.Point}`
-        wasAbleToMove = this.AdjustPositionInHash(pieceAtPoint, destinationPoint);
+        if (!wasAbleToMove) throw `${pieceAtPoint.type.name} at ${originPoint.Point} is not able to move to ${destinationPoint.Point}`
+        wasAbleToMove = this.AdjustPositionInHash(originPoint, destinationPoint);
         return `${pieceAtPoint.type.name} moved to ${destinationPoint.Point}`
     }
 
-    AdjustPositionInHash(piece, point){
-        this.pieces[piece.getPosition().Point] = null;
-        this.pieces[point.Point] = piece; 
+    runPlacementCommand(command) {
+        let parts = command.split('');
+        if (parts.length > 4) throw "command to long";
+        let pieceType = parts[0];
+        let pieceColor = parts[1];
+        let location = this.validateInRange(parts.slice(2));
+        let pieceAtLocation = this.findPieceBasedOnPoint(location);
+        if (pieceAtLocation != null) throw `${pieceAtLocation.type.name} is already on ${location.Point}`
+        let piecePlaced = new ChessPiece(this.processColor(pieceColor), this.proccessType(pieceType));
+        piecePlaced.setPosition(location);
+        this.pieces[location.Point] = piecePlaced;
+        return `Placing ${piecePlaced.color} ${piecePlaced.type.name} on ${location.Point}`
     }
 
-    findPieceBasedOnPoint(originPoint){
+    processColor(colorName){
+        if(colorName !== 'l' && colorName !== 'd') throw 'Not a valid color option'
+        let color =  colorName === 'l' ? PieceColor.White: PieceColor.Black;
+        return color;
+    }
+
+    proccessType(typeName){
+        let type = null;
+        switch(typeName){
+            case 'P':
+                type = PieceTypes.Pawn;
+            break;
+            case 'R':
+                type = PieceTypes.Rook;
+                break;
+            case 'N':
+                type = PieceTypes.Knight;
+                break;
+            case 'B':
+                type = PieceTypes.Bishop;
+                break;
+            case 'Q':
+                type = PieceTypes.Queen;
+                break;
+            case 'K':
+                type = PieceTypes.King;
+                break;
+            default:
+                throw 'Not a valid Type';
+        }
+
+        return type;
+    }
+
+    AdjustPositionInHash(originalPosition, newPosition) {
+        this.pieces[newPosition.Point] = this.pieces[originalPosition.Point];
+        this.pieces[originalPosition.Point] = null;
+    }
+
+    findPieceBasedOnPoint(originPoint) {
         let piece = this.pieces[originPoint.Point];
         return piece;
     }
 
-    validateInRange(positionToCheck){
-        if(positionToCheck.length > 2) throw "pass in a position"
+    validateInRange(positionToCheck) {
+        if (positionToCheck.length > 2) throw "pass in a position"
         let point = new BoardPoint(positionToCheck[0], positionToCheck[1]);
-        if(point.x < LowerBounds.x || point.x > this.xLimit) throw `${point.Point} is not on the board`
-        if(point.y < LowerBounds.y || point.y > this.yLimit) throw `${point.Point} is not on the Board`
+        if (point.x < LowerBounds.x || point.x > this.xLimit) throw `${point.Point} is not on the board`
+        if (point.y < LowerBounds.y || point.y > this.yLimit) throw `${point.Point} is not on the Board`
         return point
     }
 }
