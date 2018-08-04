@@ -51,7 +51,7 @@
         "default-case": "error",
         "dot-location": "error",
         "dot-notation": [
-            "error",
+            "warn",
             {
                 "allowKeywords": true
             }
