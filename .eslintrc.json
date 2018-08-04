@@ -250,7 +250,7 @@
         "space-infix-ops": "off",
         "space-unary-ops": "error",
         "spaced-comment": [
-            "error",
+            "off",
             "never"
         ],
         "strict": "off",
