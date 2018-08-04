@@ -1,6 +1,6 @@
 import { PieceTypes } from '../models/PieceTypes';
 import { ChessPiece, PieceColor } from '../models/ChessPiece'
-import { BoardPoint } from '../models/BoardPoint'
+import BoardPoint  from '../models/BoardPoint'
 const LowerBounds = {
     x: 1,
     y: 1
