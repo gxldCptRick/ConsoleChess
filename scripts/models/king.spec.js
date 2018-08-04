@@ -1,59 +1,74 @@
 import mocha from 'mocha';
-import assert from 'assert';
+import chai from 'chai';
 import { PieceTypes } from './PieceTypes';
-import { ChessPiece,  PieceColor } from './ChessPiece'; 
 import BoardPoint from './BoardPoint';
-
+const should = chai.should();
 mocha.describe('King Moves Correctly', function(){
     mocha.it('King Can Move Forward', function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.King);
-        chessPiece.setPosition(new BoardPoint('E',4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('E', 5)), true);
+        let originalPoint = new BoardPoint('E', 4);
+        let nextPoint = new BoardPoint('E', 5);
+        let result = PieceTypes.King.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     mocha.it('King Can Move Forward', function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.King);
-        chessPiece.setPosition(new BoardPoint('E',4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('E', 3)), true);
+        let originalPoint = new BoardPoint('E', 4);
+        let nextPoint = new BoardPoint('E', 3);
+        let result = PieceTypes.King.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     mocha.it('King Can Move To Left', function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.King);
-        chessPiece.setPosition(new BoardPoint('E',4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('D', 4)), true);
+        let originalPoint = new BoardPoint('E', 4);
+        let nextPoint = new BoardPoint('D', 4);
+        let result = PieceTypes.King.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     mocha.it('King Can Move To Right', function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.King);
-        chessPiece.setPosition(new BoardPoint('E',4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('F', 4)), true);
+        let originalPoint = new BoardPoint('E', 4);
+        let nextPoint = new BoardPoint('F', 4);
+        let result = PieceTypes.King.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     mocha.it('King Can Move Diagonally Forward Right', function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.King);
-        chessPiece.setPosition(new BoardPoint('E',4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('F', 5)), true);
+        let originalPoint = new BoardPoint('E', 4);
+        let nextPoint = new BoardPoint('F', 5);
+        let result = PieceTypes.King.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     
     mocha.it('King Can Move Diagonally Forward Left', function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.King);
-        chessPiece.setPosition(new BoardPoint('E',4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('D', 3)), true);
+        let originalPoint = new BoardPoint('E', 4);
+        let nextPoint = new BoardPoint('D', 5);
+        let result = PieceTypes.King.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     
     mocha.it('King Can Move Diagonally Backward Right', function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.King);
-        chessPiece.setPosition(new BoardPoint('E',4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('F', 3)), true);
+        let originalPoint = new BoardPoint('E', 4);
+        let nextPoint = new BoardPoint('F', 3);
+        let result = PieceTypes.King.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     
     mocha.it('King Can Move Diagonally Backward Left', function(){
-        var chessPiece = new ChessPiece(PieceColor.White, PieceTypes.King);
-        chessPiece.setPosition(new BoardPoint('E',4));
-        assert.equal(chessPiece.moveTo(new BoardPoint('D', 5)), true);
+        let originalPoint = new BoardPoint('E', 4);
+        let nextPoint = new BoardPoint('D', 3);
+        let result = PieceTypes.King.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
 })
