@@ -25,7 +25,8 @@
   "homepage": "https://github.com/gxldCptRick/ConsoleChess#readme",
   "dependencies": {
     "chalk": "^2.4.1",
-    "electron": "^2.0.6"
+    "electron": "^2.0.6",
+    "eslint": "^5.3.0"
   },
   "devDependencies": {
     "assert": "^1.4.1",
