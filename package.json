@@ -2,13 +2,12 @@
   "name": "console-chess",
   "version": "1.0.0",
   "description": "a simple chess app ",
-  "main": "lib/index.js",
+  "main": "scripts/index.js",
   "scripts": {
     "build-config": "babel webpack.config.dev.js --out-file babel.webpack.config.dev.js",
     "pack": "webpack --config babel.webpack.config.dev.js",
     "build": "npm-run-all build-config pack",
-    "start": "npm-run-all build launch-app",
-    "launch-app": "node app.js testFile.txt",
+    "start": "babel-node scripts/index.js testFile.txt",
     "test": "npm-run-all run-tests",
     "run-tests": "mocha --reporter progress scripts/testPrep.js  \"scripts/**/*.spec.js\""
   },
