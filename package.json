@@ -9,8 +9,8 @@
     "build": "npm-run-all build-config pack",
     "start": "npm-run-all build launch-app",
     "launch-app": "node app.js testFile.txt",
-    "test": "npm-run-all compile-app  run-tests",
-    "run-tests": "mocha \"lib/**/*.spec.js\""
+    "test": "npm-run-all run-tests",
+    "run-tests": "mocha --reporter progress scripts/testPrep.js  \"scripts/**/*.spec.js\""
   },
   "repository": {
     "type": "git",
