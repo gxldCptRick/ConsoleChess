@@ -1,0 +1,21 @@
+language: node_js
+sudo: enabled
+os: 
+  - osx
+  - linux
+node_js: "lts/*"
+cache:
+  directories:
+    - "node_modules"
+install:
+  - npm install
+script:
+  - npm test
+
+notifications:
+  email:
+    recipients:
+      - andreshcar@live.com
+      - fblanco@student.neumont.edu
+    on_success: change
+    on_failure: always
