@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import { GameBoard } from './controllers/GameBoard';
 import { FileReader } from './controllers/FileReader';
 
@@ -8,7 +10,6 @@ let callBack = (processedInputs) => {
         x: 8,
         y: 8
     });
-    console.log(processedInputs);
     processedInputs.forEach((input, index) => {
         if(input.length === 2) {
             try {
