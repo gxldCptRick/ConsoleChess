@@ -1,7 +1,6 @@
 import { GameBoard } from './controllers/GameBoard';
 import { FileReader } from './controllers/FileInputParser';
-import { cursorTo } from 'readline';
-import { callbackify } from 'util';
+
 let path = require('path');
 let callBack = () => {
     let processedInputs = FileReader.readInputs;
