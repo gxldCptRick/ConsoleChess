@@ -1,14 +1,17 @@
-require('babel-register')();
 import mocha  from 'mocha';
 import chai from 'chai';
-import PieceTypes from './PieceTypes' 
-import { BoardPoint } from './BoardPoint';
-chai.should();
+import { PieceTypes } from './PieceTypes' 
+import  BoardPoint  from './BoardPoint';
+
+const should = chai.should();
 
 mocha.describe("Bishop Moves Correctly",function(){
     mocha.it("Bishop Can Move Diagonally Forward Left", function(){
         let originalPoint = new BoardPoint('D', 4);
         let nextPoint = new BoardPoint('C', 5);
+        let result = PieceTypes.Bishop.canMoveTo(originalPoint, nextPoint);
+        should.exist(result);
+        result.should.equal(true);
     });
 
     // mocha.it("Bishop Can Move Diagonally Forward Right", function(){

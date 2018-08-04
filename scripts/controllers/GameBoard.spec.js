@@ -1,14 +1,31 @@
 import { GameBoard } from './GameBoard';
-import { mocha } from 'mocha';
+import { PieceTypes } from '../models/PieceTypes';
+import  mocha  from 'mocha';
 import  chai  from 'chai';
-chai.should();
+const should = chai.should();
 
 mocha.describe('GameBoard Spawns Pieces Correctly', function(){
     mocha.it('Pawn Spawned Properly', function(){
         let board = new GameBoard({x:8, y:8});
-        board.should.have.property("A1");
-        board.should.have.property("A4");
-        board.should.have.property("A5");
+        let pieces = board.pieces;
+        should.exist(pieces);
+        pieces.should.have.property("A2");
+        pieces.should.have.property("G2");
+        pieces.should.have.property("H2");
+    });
+
+    mocha.it('Rook Spawned Properly', function(){
+        let board = new GameBoard({x:8, y:8});
+        let pieces = board.pieces;
+        should.exist(pieces);
+        
+        pieces.should.have.property("A1");
+        let pieceAtA1 = pieces.A1;
+        pieceAtA1.type.should.equal(PieceTypes.Rook);
+        
+        pieces.should.have.property("H1");
+        let pieceAtH1 = pieces.H1;
+        pieceAtH1.type.should.equal(PieceTypes.Rook);
     });
 });
 
