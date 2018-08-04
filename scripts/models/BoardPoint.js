@@ -1,5 +1,5 @@
 const ValueForAMinusOne = 64;
-export class BoardPoint {
+export default class BoardPoint {
     constructor(alphaCharacter, numberedPosition){
         if(typeof alphaCharacter === 'string'){
             var alphalpha = alphaCharacter.toUpperCase();
