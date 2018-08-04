@@ -4,11 +4,13 @@
   "description": "a simple chess app ",
   "main": "lib/index.js",
   "scripts": {
-    "babel": "npx babel --presets es2015 Scripts/ --out-dir lib",
-    "start": "npm-run-all babel launch-app",
-    "launch-app": "node lib/index.js testFile.txt",
-    "test": "npm-run-all babel mocha-t",
-    "mocha-t": "mocha \"tests/**/*.spec.js\""
+    "build-config": "babel webpack.config.dev.js --out-file babel.webpack.config.dev.js",
+    "pack": "webpack --config babel.webpack.config.dev.js",
+    "build": "npm-run-all build-config pack",
+    "start": "npm-run-all build launch-app",
+    "launch-app": "node app.js testFile.txt",
+    "test": "npm-run-all compile-app  run-tests",
+    "run-tests": "mocha \"lib/**/*.spec.js\""
   },
   "repository": {
     "type": "git",
@@ -29,13 +31,17 @@
     "node": "^10.8.0"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "eslint": "^5.3.0",
     "assert": "^1.4.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "eslint": "^5.3.0",
     "mocha": "^5.2.0",
-    "npm-run-all": "^4.1.3"
+    "npm-run-all": "^4.1.3",
+    "webpack": "^4.16.4",
+    "webpack-cli": "^3.1.0",
+    "webpack-node-externals": "^1.7.2"
   }
 }
