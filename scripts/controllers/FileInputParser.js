@@ -1,11 +1,14 @@
 const fs = require('fs');
-const FileReader = {
-    readInputs: [],
-    processFile: (filePath, callBack) => {
+
+export class FileReader {
+    constructor(){
+        this.readInputs = [];
+    }
+    processFile(filePath, callBack) {
         if(typeof filePath !== 'string') throw "filePath Must be a string"
         FileReader.readFromFile(filePath, callBack);
-    },    
-    readFromFile: (filePath, callBack)=> {
+    }   
+    readFromFile(filePath, callBack) {
         fs.readFile(filePath, 'utf8', function(err, data){
             if(err) throw err;
             let lines = data.split('\r\n');
@@ -16,9 +19,6 @@ const FileReader = {
             if(callBack) callBack();
         });
     }
-};
-
-export {
-    FileReader
 }
+
 
