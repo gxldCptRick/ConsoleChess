@@ -2,14 +2,14 @@ import { PieceTypes } from '../models/PieceTypes';
 import { ChessPiece, PieceColor } from '../models/ChessPiece'
 import BoardPoint  from '../models/BoardPoint'
 const LowerBounds = {
-    x: 1,
+    x: 0,
     y: 1
 };
 
 export class GameBoard {
     constructor(bounds){
         this.pieces = {};
-        this.xLimit = bounds.x;
+        this.xLimit = bounds.x - 1;
         this.yLimit = bounds.y;
         this.setupBoard();
     }
@@ -52,7 +52,7 @@ export class GameBoard {
         let rightKnight = new ChessPiece(color, PieceTypes.Knight);
         let leftKnight = new ChessPiece(color, PieceTypes.Knight);
         leftKnight.setPosition(new BoardPoint(LowerBounds.x + 1, location));
-        rightKnight.setPosition(new BoardPoint(this.yLimit - 1, location));
+        rightKnight.setPosition(new BoardPoint(this.xLimit - 1, location));
         this.pieces[rightKnight.getPosition().Point] = rightKnight;
         this.pieces[leftKnight.getPosition().Point] = leftKnight;
     }
@@ -61,14 +61,14 @@ export class GameBoard {
         let location = color == PieceColor.White? LowerBounds.y: this.yLimit;
         let rightRook = new ChessPiece(color, PieceTypes.Rook);
         let leftRook = new ChessPiece(color, PieceTypes.Rook);
-        leftRook.setPosition(new BoardPoint(LowerBounds.x,location));
+        leftRook.setPosition(new BoardPoint(LowerBounds.x, location));
         rightRook.setPosition(new BoardPoint(this.xLimit, location));
-        this.pieces[rightRook.getPosition().Point];
-        this.pieces[leftRook.getPosition().Point];
+        this.pieces[rightRook.getPosition().Point] = rightRook;
+        this.pieces[leftRook.getPosition().Point] = leftRook;
     }
 
     addPawns(color){
-        for(let i = 0; i < this.xLimit; i++){
+        for(let i = 0; i <= this.xLimit; i++){
             let pawn = new ChessPiece(color, PieceTypes.Pawn);
             let position = color === PieceColor.White ? LowerBounds.y + 1 : this.yLimit - 1; 
             pawn.setPosition(new BoardPoint(i, position));
@@ -97,7 +97,6 @@ export class GameBoard {
     }
 
     findPieceBasedOnPoint(originPoint){
-        console.log(originPoint.Point);
         let piece = this.pieces[originPoint.Point];
         return piece;
     }
