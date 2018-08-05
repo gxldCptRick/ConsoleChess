@@ -9,26 +9,31 @@ export class BoardDisplay{
         this.ySize = boardToDisplay.yLimit;
     }
     displayBoard(){
-        let output = '_'.repeat((this.xSize * 3) + 3) + '\n';
-        for(let i = 1; i <= this.ySize; i++){
+        let output = 'white pieces: lowercase,\nBLACK PIECES: UPPERCASE\n';
+        for(let i = 0; i < this.ySize; i++)
+        {
+            output += chalk.bgRedBright(`|${String.fromCharCode(ValueForA + i)}|`);
+        }
+        output += '\n'
+        for(let i = this.ySize; i > 0; i--){
             for(let j = 0; j <= this.xSize; j++)
             {
                 let char = String.fromCharCode(ValueForA + j);
                 let possiblePiece = this.piecesOnBoard[`${char}${i}`];
                 if(possiblePiece != null){
                     if(possiblePiece.color === PieceColor.White){
-                        output += chalk.bgBlackBright('|'+ (possiblePiece.type.name[0]).toLowerCase() +'|');
+                        output += chalk.bgWhiteBright('|'+ (possiblePiece.type.name[0]).toLowerCase() +'|');
                     }else
                     {
-                        output += chalk.bgCyan('|' + (possiblePiece.type.name[0]) +'|');
+                        output += chalk.bgBlackBright('|' + (possiblePiece.type.name[0]) +'|');
                     }
                 }else{
-                    output += chalk.bgGreen('|_|');
+                    output += chalk.bgMagentaBright('|-|');
                 }
             }
+            output += chalk.bgRedBright(`|${i}|`);
             output += '\n';
         }
-        output += '_'.repeat((this.xSize*3) + 3);
         console.log(output);
     }
 }
