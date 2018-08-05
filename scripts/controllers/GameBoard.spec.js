@@ -18,6 +18,16 @@ mocha.describe('GameBoard Spawns Pieces Correctly', function(){
         pieces.should.have.property("H2");
         pieces.H2.type.name.should.equal("Pawn", "Pawn is not at H2");
 
+        pieces.should.have.property("A7");
+        pieces.A7.type.name.should.equal("Pawn", "Pawn is not at A7");
+        
+        pieces.should.have.property("G7");
+        pieces.G7.type.name.should.equal("Pawn", "Pawn is not at G7");
+        
+        pieces.should.have.property("H7");
+        pieces.H7.type.name.should.equal("Pawn", "Pawn is not at H7");
+
+
     });
 
     mocha.it('Rook Spawned Properly', function(){
@@ -30,6 +40,12 @@ mocha.describe('GameBoard Spawns Pieces Correctly', function(){
         
         pieces.should.have.property("H1");
         pieces.H1.type.name.should.equal("Rook", "Rook is not on H1");
+
+        pieces.should.have.property("A8");
+        pieces.A8.type.name.should.equal("Rook", "Rook is not on A8");
+        
+        pieces.should.have.property("H8");
+        pieces.H8.type.name.should.equal("Rook", "Rook is not on H8");
     });
 
     mocha.it('Knight Spawned Properly', function(){
@@ -42,6 +58,12 @@ mocha.describe('GameBoard Spawns Pieces Correctly', function(){
         
         pieces.should.have.property("G1");
         pieces.G1.type.name.should.equal("Knight", "Knight is not on G1");
+
+        pieces.should.have.property("B8");
+        pieces.B8.type.name.should.equal("Knight", "Knight is not on B8");
+        
+        pieces.should.have.property("G8");
+        pieces.G8.type.name.should.equal("Knight", "Knight is not on G8");
     });
 
     mocha.it('Bishop Spawned Properly', function(){
@@ -54,6 +76,12 @@ mocha.describe('GameBoard Spawns Pieces Correctly', function(){
         
         pieces.should.have.property("F1");
         pieces.F1.type.name.should.equal("Bishop", "Bishop is not on F1");
+
+        pieces.should.have.property("C8");
+        pieces.C8.type.name.should.equal("Bishop", "Bishop is not on C8");
+        
+        pieces.should.have.property("F8");
+        pieces.F8.type.name.should.equal("Bishop", "Bishop is not on F8");
     });
 
     mocha.it('Queen Spawned Properly', function(){
@@ -64,6 +92,9 @@ mocha.describe('GameBoard Spawns Pieces Correctly', function(){
         pieces.should.have.property("D1");
         pieces.D1.type.name.should.equal("Queen", "Queen is not on D1");
         
+        pieces.should.have.property("D8");
+        pieces.D8.type.name.should.equal("Queen", "Queen is not on D8");
+        
     });
 
     mocha.it('King Spawned Properly', function(){
@@ -73,6 +104,9 @@ mocha.describe('GameBoard Spawns Pieces Correctly', function(){
         
         pieces.should.have.property("E1");
         pieces.E1.type.name.should.equal("King", "King is not on E1");
+        
+        pieces.should.have.property("E8");
+        pieces.E8.type.name.should.equal("King", "King is not on E8");
         
     });
     
