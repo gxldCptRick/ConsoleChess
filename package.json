@@ -2,14 +2,16 @@
   "name": "console-chess",
   "version": "1.0.0",
   "description": "a simple chess app ",
-  "main": "scripts/index.js",
+  "main": "scripts/console-app-main.js",
   "scripts": {
-    "build-config": "babel webpack.config.dev.js --out-file babel.webpack.config.dev.js",
+    "build-config-console": "babel webpack.config.dev.js --out-file babel.webpack.config.dev.js",
     "pack": "webpack --config babel.webpack.config.dev.js",
-    "build": "npm-run-all build-config pack",
-    "start": "babel-node scripts/index.js testFile.txt",
+    "build": "npm-run-all build-config-console pack",
+    "start": "npm run console-app",
+    "console-app":"babel-node scripts/console-app-main.js testFile.txt",
+    "electron-app":"electron scripts/babel-flag.js scripts/electron-app-main.js",
     "test": "npm-run-all run-tests",
-    "run-tests": "mocha --reporter progress scripts/testPrep.js  \"scripts/**/*.spec.js\""
+    "run-tests": "mocha --reporter progress scripts/babel-flag.js  \"scripts/**/*.spec.js\""
   },
   "repository": {
     "type": "git",
