@@ -3,3 +3,4 @@ package-lock.json
 app.js
 lib/
 babel.webpack.config.dev.js
+electron-app-built/
