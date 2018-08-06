@@ -15,7 +15,7 @@ export class ChessBoardDisplayer {
             for(let y = 0; y < 8; y++){
                 let yIsEven = (y % 2 == 0);
                 let xIsEven = (x % 2 == 0);
-                context.fillStyle = (yIsEven && xIsEven) || (!yIsEven && !xIsEven)? "green" : "red";
+                context.fillStyle = (yIsEven && xIsEven) || (!yIsEven && !xIsEven)? "#c0ffee" : "#5ad157";
                 context.beginPath();
                 context.rect((squareSize * x) , (squareSize * y), squareSize, squareSize);
                 context.fill();

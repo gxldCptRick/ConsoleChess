@@ -1,31 +1,31 @@
 export const projectedDimensions = {
-    x: 50,
-    y: 50
+    width: 50,
+    height: 50
 };
 
 export const imageDimensions = {
-    x: 43,
-    y: 43
+    width: 75,
+    height: 75
 };
 
 export const PiecePointsX = {
-    rookX: 0,
-    knightRightX: 42,
-    bishopX: 86,
-    kingX: 130,
-    queenX: 172,
-    knightLeftX: 217, 
-    pawnX: 261
+    rookX: -5,
+    knightRightX: 0,
+    bishopX: 143,
+    kingX: 215,
+    queenX: 285,
+    knightLeftX: 69, 
+    pawnX: 435
 }
 
 export const PiecePointsY = {
     white: {
         standard: 0,
-        pawn: 3
+        pawn: 0
     },
     black: {
-        standard: 49,
-        leftKnight: 48,
-        pawn: 50
+        standard: 80,
+        leftKnight: 80,
+        pawn: 80
     }
 }
