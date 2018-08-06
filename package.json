@@ -10,18 +10,11 @@
     "build-electron": "babel electron-app/ --out-dir electron-app-built/",
     "build-lib":"babel lib/ --out-dir lib-built/",
     "start": "npm run console-app",
-<<<<<<< HEAD
     "console-app": "babel-node console-app/main.js testFile.txt",
     "electron-app": "npm-run-all build-electron start-electron",
     "start-electron": "electron .",
     "test": "npm-run-all run-lib-tests",
     "run-lib-tests": "mocha --reporter progress babel-flag.js  \"lib/**/*.spec.js\""
-=======
-    "console-app":"babel-node console-app/main.js testFile.txt",
-    "electron-app":"electron scripts/babel-flag.js scripts/electron-app-main.js",
-    "test": "npm-run-all run-tests",
-    "run-tests": "mocha --reporter progress scripts/babel-flag.js  \"scripts/**/*.spec.js\""
->>>>>>> master
   },
   "repository": {
     "type": "git",
