@@ -8,7 +8,7 @@
     "pack": "webpack --config babel.webpack.config.dev.js",
     "build": "npm-run-all build-config-console pack",
     "start": "npm run console-app",
-    "console-app":"babel-node scripts/console-app-main.js testFile.txt",
+    "console-app":"babel-node console-app/main.js testFile.txt",
     "electron-app":"electron scripts/babel-flag.js scripts/electron-app-main.js",
     "test": "npm-run-all run-tests",
     "run-tests": "mocha --reporter progress scripts/babel-flag.js  \"scripts/**/*.spec.js\""
