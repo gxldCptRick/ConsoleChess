@@ -1,4 +1,4 @@
-/* eslint-disable no-def*/
+/* eslint-disable no-undef*/
 import { ChessBoardDisplayer } from '../scripts/ChessBoardDisplayer';
 import { GameBoard } from '../../lib-built/controllers/GameBoard';
 
