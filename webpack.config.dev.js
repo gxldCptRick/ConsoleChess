@@ -4,12 +4,12 @@ export default {
     target: 'node',
     entry: {
         app: [
-            path.resolve(__dirname, "scripts/electron-app/main.js")
+            path.resolve(__dirname, "electron-app/main.js")
         ] 
     },
     mode: "development",
     output: {
-        path: path.resolve(__dirname, "scripts/electron-app/"),
+        path: path.resolve(__dirname),
         filename:'app.js'
     },
     plugins: [],

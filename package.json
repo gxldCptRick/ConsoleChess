@@ -8,6 +8,7 @@
     "pack": "webpack --config babel.webpack.config.dev.js",
     "build-console": "npm-run-all build-config-console pack",
     "build-electron": "babel electron-app/ --out-dir electron-app-built/",
+    "build-lib":"babel lib/ --out-dir lib-built/",
     "start": "npm run console-app",
     "console-app": "babel-node console-app/main.js testFile.txt",
     "electron-app": "npm-run-all build-electron start-electron",
