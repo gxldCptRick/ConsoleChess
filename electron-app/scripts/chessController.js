@@ -9,4 +9,11 @@ window.addEventListener('load', () => {
     let display = new ChessBoardDisplayer(canvas, currentGame, piecesImage);
     display.drawBoard();
     display.drawPieces();
+    configureClicked(canvas);
 });
+
+let configureClicked = (canvas) => {
+    canvas.addEventListener('click', function(){
+
+    });
+}
