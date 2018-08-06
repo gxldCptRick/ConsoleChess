@@ -5,7 +5,8 @@ import { GameBoard } from '../../lib-built/controllers/GameBoard';
 window.addEventListener('load', () => {
     let canvas = document.getElementById('board');
     let currentGame = new GameBoard({x: 8, y: 8});
-    let display = new ChessBoardDisplayer(canvas, currentGame);
-
+    let piecesImage = document.getElementById('pieces');
+    let display = new ChessBoardDisplayer(canvas, currentGame, piecesImage);
     display.drawBoard();
+    display.drawPieces();
 });
