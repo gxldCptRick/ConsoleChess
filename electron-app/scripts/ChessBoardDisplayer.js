@@ -1,11 +1,16 @@
 import PieceDrawer from '../scripts/PieceDrawer';
-const squareSize = 50;
+export const squareSize = 50;
 const ValueForA = 'A'.charCodeAt();
 export class ChessBoardDisplayer {
     constructor(canvas, gameBoard, piecesImage){
         this.canvas = canvas;
         this.gameBoard = gameBoard;
         this.pieceDrawer = new PieceDrawer(piecesImage, canvas);
+    }
+
+    displayBoard(){
+        this.drawBoard();
+        this.drawPieces();
     }
 
     drawBoard(){
