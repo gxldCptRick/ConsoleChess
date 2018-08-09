@@ -15,7 +15,7 @@ export class BoardDisplay {
         }
         output += '\n'
         for (let y = this.ySize; y > 0; y--) {
-            for (let x = 0; x <= this.xSize; x++) {
+            for (let x = 0; x < this.xSize; x++) {
                 let char = String.fromCharCode(ValueForA + x);
                 let possiblePiece = this.piecesOnBoard[`${char}${y}`];
                 if (possiblePiece != null) {
