@@ -22,10 +22,11 @@ let configureClicked = (canvas) => {
         let ctx = canvas.getContext('2d');
         let possibleMoves = currentGame.getPossibleMovesFor(pieceSelected);
         if(possibleMoves !== null){
-            possibleMoves.forEach(array => {
+            console.log(possibleMoves);
+            possibleMoves.forEach(point => {
                 ctx.beginPath();
                 ctx.fillStyle = "rgba(192, 1, 175, .5)";
-                ctx.fillRect(array[0], array[1], squareSize, squareSize);
+                ctx.fillRect(point.x * squareSize, (point.y - 1) * squareSize, squareSize, squareSize);
             });
         }
 
