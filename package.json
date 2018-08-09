@@ -16,7 +16,7 @@
     "run-console":"babel-node console-app/main.js testFile.txt",
     "console-app": "npm-run-all lint-console run-console",
     "run-electron":"npm-run-all build-electron start-electron",
-    "electron-app": "lint-electron run-electron",
+    "electron-app": "npm-run-all lint-electron run-electron",
     "start-electron": "electron .",
     "test": "npm-run-all run-lib-tests",
     "run-lib-tests": "mocha --reporter progress babel-flag.js  \"lib/**/*.spec.js\""
