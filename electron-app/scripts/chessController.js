@@ -39,7 +39,6 @@ let configureClicked = (canvas) => {
 let getPosititonOnScreen = (mouseEvent) => {
     let xPos = (mouseEvent.clientX - (mouseEvent.clientX % squareSize));
     let yPos = (mouseEvent.clientY - (mouseEvent.clientY % squareSize));
-    
     return { xPos: xPos, yPos: yPos };
 }
 

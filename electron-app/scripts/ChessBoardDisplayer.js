@@ -32,11 +32,11 @@ export class ChessBoardDisplayer {
         let xSize = this.gameBoard.xLimit;
         let ySize = this.gameBoard.yLimit;
         for (let y = ySize; y > 0; y--) {
-            for (let x = 0; x <= xSize; x++) {
+            for (let x = 0; x < xSize; x++) {
                 let char = String.fromCharCode(ValueForA + x);
                 let possiblePiece = pieces[`${char}${y}`];
                 if (possiblePiece != null) {
-                    this.pieceDrawer.drawPiece(possiblePiece, {x: ((7 - x) * squareSize), y: (((8 - y)) * squareSize)});
+                    this.pieceDrawer.drawPiece(possiblePiece, {x: ((x) * squareSize), y: (((8 - y)) * squareSize)});
                 } 
             }
         }
