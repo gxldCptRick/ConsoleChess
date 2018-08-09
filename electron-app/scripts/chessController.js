@@ -7,7 +7,7 @@ let pieceSelected = null;
 
 window.addEventListener('load', () => {
     let canvas = document.getElementById('board');
-    currentGame = new GameBoard({x: 8, y: 8});
+    currentGame = new GameBoard();
     let piecesImage = document.getElementById('pieces');
     display = new ChessBoardDisplayer(canvas, currentGame, piecesImage);
     display.displayBoard();
@@ -31,7 +31,7 @@ let configureClicked = (canvas) => {
 
         ctx.beginPath();
         ctx.fillStyle = "rgba(255,255,0,.5)";
-    
+        
         ctx.fillRect(positionOnScreen.xPos, positionOnScreen.yPos, squareSize, squareSize);
     });
 }
