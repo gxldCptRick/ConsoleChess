@@ -34,9 +34,9 @@ export class ChessBoardDisplayer {
         for (let y = ySize; y > 0; y--) {
             for (let x = 0; x < xSize; x++) {
                 let char = String.fromCharCode(ValueForA + x);
-                let possiblePiece = pieces[`${char}${y}`];
-                if (possiblePiece != null) {
-                    this.pieceDrawer.drawPiece(possiblePiece, {x: ((x) * squareSize), y: (((8 - y)) * squareSize)});
+                let selectedPiece = pieces[`${char}${y}`];
+                if (selectedPiece != null) {
+                    this.pieceDrawer.drawPiece(selectedPiece, {x: ((x) * squareSize), y: (((8 - y)) * squareSize)});
                 } 
             }
         }

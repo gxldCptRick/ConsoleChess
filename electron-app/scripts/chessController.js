@@ -22,17 +22,14 @@ let configureClicked = (canvas) => {
         let ctx = canvas.getContext('2d');
         let possibleMoves = currentGame.getPossibleMovesFor(pieceSelected);
         if(possibleMoves !== null){
-            console.log(possibleMoves);
             possibleMoves.forEach(point => {
                 ctx.beginPath();
                 ctx.fillStyle = "rgba(192, 1, 175, .5)";
-                ctx.fillRect(point.x * squareSize, (point.y - 1) * squareSize, squareSize, squareSize);
+                ctx.fillRect(point.x * squareSize, (8 - point.y) * squareSize, squareSize, squareSize);
             });
         }
-
         ctx.beginPath();
         ctx.fillStyle = "rgba(255,255,0,.5)";
-        
         ctx.fillRect(positionOnScreen.xPos, positionOnScreen.yPos, squareSize, squareSize);
     });
 }
@@ -44,10 +41,12 @@ let getPosititonOnScreen = (mouseEvent) => {
 }
 
 let updateCurrentPiece = (mouseEvent) => {
-    let character = Math.floor(mouseEvent.clientX/squareSize);
-    let number = Math.floor(mouseEvent.clientY/squareSize) + 1;
+    let character =  Math.floor(mouseEvent.clientX/squareSize);
+    let number =  8 - Math.floor(mouseEvent.clientY/squareSize);
     pieceSelected = {
         character: character,
         number: number
     };
+
+    console.log(pieceSelected);
 }
