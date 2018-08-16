@@ -19,6 +19,7 @@ window.addEventListener('load', () => {
         currentGame = new GameBoard();
         display.gameBoard = currentGame;
         display.displayBoard();
+        currentTurn = 'White'
     });
 });
 
