@@ -3,11 +3,16 @@ import { ChessBoardDisplayer, squareSize } from '../scripts/ChessBoardDisplayer'
 import { GameBoard } from '../../lib-built/controllers/GameBoard';
 export class ChessController {
     constructor() {
+        this.initGame();
+    }
+
+    initGame(){
         this.possibleMovesForCurrentPiece = null;
-        this.currentTurn = 'White';
         this.currentPiece = null;
         this.isSelectingMove = false;
+        this.currentTurn = 'White';
         this.currentGame = new GameBoard();
+        this.currentGame.checkEvent.listeners.push((sender, color) =>  alert(color, 'King Is In Check'));
     }
 
     windowLoadEvent() {
@@ -71,10 +76,9 @@ export class ChessController {
     }
 
     reset() {
-        this.currentGame = new GameBoard();
+        this.initGame();
         this.display.gameBoard = this.currentGame;
         this.display.displayBoard();
-        this.currentTurn = 'White'
     }
 
     canvasClickedEvent(mouseEvent) {
