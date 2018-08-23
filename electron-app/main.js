@@ -7,9 +7,7 @@ app.on('ready', () =>{
         width: 580,
         height: 500
     });
-    
     mainWindow.loadFile(path.resolve(__dirname,'../electron-app-built/views/index.html'));
-    
     mainWindow.on('close',() => {
         mainWindow = null;
     })
