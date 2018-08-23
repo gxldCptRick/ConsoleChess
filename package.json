@@ -11,7 +11,7 @@
     "pack": "webpack --config babel.webpack.config.dev.js",
     "build-console": "npm-run-all build-config-console pack",
     "build-electron": "babel electron-app/ --out-dir electron-app-built/",
-    "build-lib": "babel lib/ --out-dir lib-built/",
+    "build-lib": "babel lib/ --out-dir lib-built/ --ignore  \"**/*.spec.js\"",
     "start": "npm run console-app",
     "run-console":"babel-node console-app/main.js testFile.txt",
     "console-app": "npm-run-all lint-console run-console",
