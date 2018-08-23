@@ -30,8 +30,8 @@ export class ChessBoardDisplayer {
 
     drawPieces(){
         let pieces = this.gameBoard.pieces;
-        let xSize = this.gameBoard.xLimit;
-        let ySize = this.gameBoard.yLimit;
+        let xSize = this.gameBoard.upperLimit.x;
+        let ySize = this.gameBoard.upperLimit.y;
         for (let y = ySize; y > 0; y--) {
             for (let x = 0; x < xSize; x++) {
                 let char = String.fromCharCode(ValueForA + x);

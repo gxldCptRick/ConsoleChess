@@ -15,8 +15,8 @@ export class ChessConsoleProccessor {
             this.currentGame = new GameBoard();
         }
     }
-    
-    start(){
+
+    start() {
         this.proccessFilePaths(this.filePaths);
     }
 
@@ -24,10 +24,10 @@ export class ChessConsoleProccessor {
         let movementFilePath = this.generatePath(movements[0]);
         if (movements.length > 1 && movements.length < 2) {
             let placementPath = this.generatePath(movements[0]);
-            this.fileReader.processFile(placementPath, this.processTheInputs(this));
+            this.fileReader.processFile(placementPath, this.processTheInput(this));
         }
 
-        this.fileReader.processFile(movementFilePath, this.processTheInputs(this));
+        this.fileReader.processFile(movementFilePath, this.processTheInput(this));
     }
 
     generatePath(roughPath) {
@@ -37,28 +37,24 @@ export class ChessConsoleProccessor {
         return fullPath;
     }
 
-    processTheInputs(context) {
-        return (processedInputs) => {
-            let display = new BoardDisplay(this.currentGame);
-            processedInputs.forEach((input, index) => {
-                if (input.length === 2) {
-                    try {
-                        let output = context.currentGame.runSinglePointCommand(input);
-                        console.log(output);
-                    } catch (e) {
-                        console.error(e);
-                    }
-                } else if (input.length === 1) {
-                    let output = context.currentGame.runPlacementCommand(input[0]);
+    processTheInput(context) {
+        context.display = new BoardDisplay(this.currentGame);
+        return (processedInput) => {
+            if (processedInput.length === 2) {
+                try {
+                    let output = context.currentGame.runSinglePointCommand(processedInput);
                     console.log(output);
+                } catch (e) {
+                    console.error(e);
                 }
-                else {
-                    console.log(input);
-                    console.log(index);
-                }
-                
-                display.displayBoard();
-            });
+            } else if (processedInput.length === 1) {
+                let output = context.currentGame.runPlacementCommand(processedInput[0]);
+                console.log(output);
+            }
+            else {
+                console.log(processedInput);
+            }
+            context.display.displayBoard();
         }
     }
 }
