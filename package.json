@@ -15,7 +15,7 @@
     "start": "npm run console-app",
     "run-console":"babel-node console-app/main.js testFile.txt",
     "console-app": "npm-run-all lint-console run-console",
-    "run-electron":"npm-run-all build-electron start-electron",
+    "run-electron":"npm-run-all build-lib build-electron start-electron",
     "electron-app": "npm-run-all lint-electron run-electron",
     "start-electron": "electron .",
     "test": "npm-run-all run-lib-tests",
