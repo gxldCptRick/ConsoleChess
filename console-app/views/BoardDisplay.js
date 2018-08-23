@@ -5,8 +5,8 @@ const ValueForA = 'A'.charCodeAt();
 export class BoardDisplay {
     constructor(boardToDisplay) {
         this.piecesOnBoard = boardToDisplay.pieces;
-        this.xSize = boardToDisplay.xLimit;
-        this.ySize = boardToDisplay.yLimit;
+        this.xSize = boardToDisplay.upperLimit.x;
+        this.ySize = boardToDisplay.upperLimit.y;
     }
     displayBoard() {
         let output = 'white pieces: lowercase,\nBLACK PIECES: UPPERCASE\n';

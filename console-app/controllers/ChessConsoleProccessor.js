@@ -56,6 +56,7 @@ export class ChessConsoleProccessor {
                     console.log(input);
                     console.log(index);
                 }
+                
                 display.displayBoard();
             });
         }
