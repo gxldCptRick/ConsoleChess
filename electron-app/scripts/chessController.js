@@ -37,10 +37,15 @@ export class ChessController {
         return currentlySelectedPiece;
     }
 
+    checkIfRightColor(pieceCurrentlySelected){
+        //return pieceCurrentlySelected.color !== this.currentGame.currentTurn
+        return pieceCurrentlySelected;
+    }
+
     displayMovementPattern(mouseEvent, pieceCurrentlySelected) {
         let positionOnScreen = this.getPosititonOnScreen(mouseEvent);
         let ctx = this.canvasOnPage.getContext('2d');
-        if (pieceCurrentlySelected.color !== this.currentGame.currentTurn) {
+        if (!this.checkIfRightColor(pieceCurrentlySelected)) {
             alert("It is not your turn.... GOD... rude");
         } else {
             this.possibleMovesForCurrentPiece = this.currentGame.getPossibleMovesFor(this.currentPiece);
