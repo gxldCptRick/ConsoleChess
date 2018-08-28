@@ -30,7 +30,7 @@
         "callback-return": "error",
         "camelcase": "error",
         "capitalized-comments": [
-            "error",
+            "off",
             "always"
         ],
         "class-methods-use-this": "off",
@@ -91,7 +91,7 @@
         "max-params": "off",
         "max-statements": "off",
         "max-statements-per-line": "off",
-        "multiline-comment-style": "error",
+        "multiline-comment-style": "warn",
         "new-parens": "error",
         "newline-after-var": "off",
         "newline-before-return": "off",
