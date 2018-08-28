@@ -4,9 +4,6 @@ os:
   - osx
   - linux
 node_js: "lts/*"
-cache:
-  directories:
-    - "node_modules"
 install:
   - npm install
 script:
