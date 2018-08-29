@@ -38,8 +38,7 @@ export class ChessController {
     }
 
     checkIfRightColor(pieceCurrentlySelected){
-        //return pieceCurrentlySelected.color !== this.currentGame.currentTurn
-        return pieceCurrentlySelected;
+        return pieceCurrentlySelected.color === this.currentGame.currentTurn
     }
 
     displayMovementPattern(mouseEvent, pieceCurrentlySelected) {
