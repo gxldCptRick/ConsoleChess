@@ -1,4 +1,4 @@
-/* eslint-disable no-alert, no-undef*/
+/* eslint-disable no-alert, no-undef, no-unused-vars*/
 import { ChessBoardDisplayer, squareSize } from '../scripts/ChessBoardDisplayer';
 import { GameBoard } from '../../lib-built/controllers/GameBoard';
 export class ChessController {
