@@ -9,13 +9,28 @@ body, html {
     overflow: hidden;
 }
 
-#board {
+#whiteInCheck {
+    position: absolute;
+    visibility: hidden;
     background: white;
+    left: 520px;
+    top: 10px;
+    color: black;
 }
+
+#blackInCheck {
+    visibility: hidden;
+    left: 520px;
+    top: 70px;
+    position: absolute;
+    background: black;
+    color: white;
+}
+
 
 #reset {
     background: yellow;
     position: absolute;
-    top: 100px;
+    top: 130px;
     right: 75px;
 }

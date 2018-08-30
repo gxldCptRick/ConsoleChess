@@ -1,4 +1,4 @@
-/* eslint-disable no-undef, no-alert, capitalized-comments, multiline-comment-style, no-new*/
+/* eslint-disable no-alert, no-undef*/
 import { ChessBoardDisplayer, squareSize } from '../scripts/ChessBoardDisplayer';
 import { GameBoard } from '../../lib-built/controllers/GameBoard';
 export class ChessController {
@@ -6,12 +6,24 @@ export class ChessController {
         this.initGame();
     }
 
-    initGame(){
+    initGame() {
         this.possibleMovesForCurrentPiece = null;
         this.currentPiece = null;
         this.isSelectingMove = false;
         this.currentGame = new GameBoard();
-        this.currentGame.checkEvent.listeners.push((sender, color) =>  alert(color, 'King Is In Check'));
+        let that = this;
+        this.currentGame.checkEvent.listeners.push((sender, color) => {
+            alert(color, 'King Is In Check');
+            that.display.displayCheckFor(color);
+        });
+        this.currentGame.checkMateEvent.listeners.push((sender, color) => {
+            alert(color, 'King has Been Check Mated');
+            that.gameIsOver = true;
+            setTimeout(() => that.display.displayGameOver(), 100);
+        });
+        this.currentGame.promotionEvent.listeners.push((sender, piece, promotions) => {
+            alert('What Would You Like To Be Promoted To????', "Promotion");
+        });
     }
 
     windowLoadEvent() {
@@ -37,7 +49,7 @@ export class ChessController {
         return currentlySelectedPiece;
     }
 
-    checkIfRightColor(pieceCurrentlySelected){
+    checkIfRightColor(pieceCurrentlySelected) {
         return pieceCurrentlySelected.color === this.currentGame.currentTurn
     }
 
@@ -45,7 +57,7 @@ export class ChessController {
         let positionOnScreen = this.getPosititonOnScreen(mouseEvent);
         let ctx = this.canvasOnPage.getContext('2d');
         if (!this.checkIfRightColor(pieceCurrentlySelected)) {
-            alert("It is not your turn.... GOD... rude");
+            alert("It is not your turn.... GODAAA... rude...", "Not Even Trying To Play By The Rules");
         } else {
             this.possibleMovesForCurrentPiece = this.currentGame.getPossibleMovesFor(this.currentPiece);
             if (this.possibleMovesForCurrentPiece !== null) {
@@ -73,6 +85,8 @@ export class ChessController {
             if (found) {
                 this.currentGame.runMovementCommand(this.currentPiece, selectedPiece);
                 this.display.displayBoard();
+                this.display.displayCheckFor("Black");
+                this.display.displayCheckFor("White");
             }
         }
     }
@@ -81,17 +95,21 @@ export class ChessController {
         this.initGame();
         this.display.gameBoard = this.currentGame;
         this.display.displayBoard();
+        this.display.hideChecks();
+        this.gameIsOver = false;
     }
 
     canvasClickedEvent(mouseEvent) {
-        this.display.displayBoard();
-        let selectedPiece = this.getCurrentlySelectedPiece(mouseEvent);
-        let pieceCurrentlySelected = this.currentGame.getSelectedPiece(selectedPiece);
-        if (!this.isSelectingMove && pieceCurrentlySelected) {
-            this.currentPiece = selectedPiece;
-            this.displayMovementPattern(mouseEvent, pieceCurrentlySelected);
-        } else {
-            this.movePiece(selectedPiece);
+        if (!this.gameIsOver) {
+            this.display.displayBoard();
+            let selectedPiece = this.getCurrentlySelectedPiece(mouseEvent);
+            let pieceCurrentlySelected = this.currentGame.getSelectedPiece(selectedPiece);
+            if (!this.isSelectingMove && pieceCurrentlySelected) {
+                this.currentPiece = selectedPiece;
+                this.displayMovementPattern(mouseEvent, pieceCurrentlySelected);
+            } else {
+                this.movePiece(selectedPiece);
+            }
         }
     }
 }

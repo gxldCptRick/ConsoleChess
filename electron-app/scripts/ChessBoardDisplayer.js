@@ -1,3 +1,4 @@
+/* eslint-disable */
 import PieceDrawer from '../scripts/PieceDrawer';
 export const squareSize = 50;
 const ValueForA = 'A'.charCodeAt();
@@ -6,6 +7,32 @@ export class ChessBoardDisplayer {
         this.canvas = canvas;
         this.gameBoard = gameBoard;
         this.pieceDrawer = new PieceDrawer(piecesImage, canvas);
+        this.White = {};
+        this.Black = {};
+        this.White.checkDisplay = document.getElementById('whiteInCheck');
+        this.Black.checkDisplay = document.getElementById('blackInCheck');
+    }
+
+    hideChecks(){
+        this.White.checkDisplay.style = 'visibility: hidden';
+        this.Black.checkDisplay.style = 'visibility: hidden';
+    }
+    displayCheckFor(color){
+        if(this.gameBoard[color].isInCheck){
+            this[color].checkDisplay.style = 'visibility: visible';
+        }else{
+            console.log('hiding', color);
+            this[color].checkDisplay.style = 'visibility: hidden';
+        }
+    }
+
+    displayGameOver(){
+        let context = this.canvas.getContext('2d');
+        context.font = '48px "Comic Sans MS"'
+        context.fillStyle = '#1ce';
+        context.fillRect(50, (this.canvas.height/2) - 100, 300, 100);
+        context.fillStyle = '#bada22';
+        context.fillText("Game Over", 75, (this.canvas.height/2)- 30);
     }
 
     displayBoard(){
