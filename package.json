@@ -13,7 +13,7 @@
     "build-electron": "babel electron-app/ --out-dir electron-app-built/",
     "build-lib": "babel lib/ --out-dir lib-built/ --ignore  \"**/*.spec.js\"",
     "start": "npm run console-app",
-    "run-console": "babel-node console-app/main.js testFile.txt",
+    "run-console": "babel-node console-app/main.js foolsmateMovement.txt",
     "console-app": "npm-run-all lint-console run-console",
     "run-electron": "npm-run-all build-lib build-electron start-electron",
     "electron-app": "npm-run-all lint-electron run-electron",

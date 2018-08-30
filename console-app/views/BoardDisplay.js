@@ -20,9 +20,9 @@ export class BoardDisplay {
                 let possiblePiece = this.piecesOnBoard[`${char}${y}`];
                 if (possiblePiece != null) {
                     if (possiblePiece.color === PieceColor.White) {
-                        output += chalk.bgWhiteBright('|' + (possiblePiece.type.name[0]).toLowerCase() + '|');
+                        output += chalk.bgWhiteBright('|' + (possiblePiece.type.name === "Knight"? "n" : possiblePiece.type.name[0]).toLowerCase() + '|');
                     } else {
-                        output += chalk.bgBlackBright('|' + (possiblePiece.type.name[0]) + '|');
+                        output += chalk.bgBlackBright('|' + (possiblePiece.type.name === "Knight"? "N" :possiblePiece.type.name[0]) + '|');
                     }
                 } else {
                     let yIsEven = y % 2 == 0;

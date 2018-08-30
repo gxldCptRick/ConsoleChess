@@ -13,7 +13,6 @@ export class ChessController {
         this.currentGame = new GameBoard();
         let that = this;
         this.currentGame.checkEvent.listeners.push((sender, color) => {
-            alert(color, 'King Is In Check');
             that.display.displayCheckFor(color);
         });
         this.currentGame.checkMateEvent.listeners.push((sender, color) => {

@@ -14,6 +14,8 @@ export class ChessConsoleProccessor {
         } else {
             this.currentGame = new GameBoard();
         }
+        this.currentGame.checkEvent.listeners.push((sender, color) => console.log(color, "is Checked"));
+        this.currentGame.checkMateEvent.listeners.push((sender, color)=> console.log(color, "Has Been Check Mated"))
     }
 
     start() {
